@@ -1,0 +1,54 @@
+<div class="project-details">
+  <h2>Project Details</h2>
+  <table>
+    <tr>
+      <th>Field</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td>Owner</td>
+      <td>
+        <ng-container *ngIf="!isEditing; else editField">
+          {{ projectDetails.owner }}
+        </ng-container>
+        <ng-template #editField>
+          <input type="text" [(ngModel)]="projectDetails.owner" class="form-control">
+        </ng-template>
+      </td>
+    </tr>
+    <tr>
+      <td>Start Date</td>
+      <td>
+        <ng-container *ngIf="!isEditing; else editField2">
+          {{ projectDetails.startDate | date }}
+        </ng-container>
+        <ng-template #editField2>
+          <input type="date" [(ngModel)]="projectDetails.startDate" class="form-control">
+        </ng-template>
+      </td>
+    </tr>
+    <tr>
+      <td>Deadline</td>
+      <td>
+        <ng-container *ngIf="!isEditing; else editField3">
+          {{ projectDetails.deadline | date }}
+        </ng-container>
+        <ng-template #editField3>
+          <input type="date" [(ngModel)]="projectDetails.deadline" class="form-control">
+        </ng-template>
+      </td>
+    </tr>
+  </table>
+  <div class="action-buttons">
+    <button class="edit-button" (click)="toggleEditMode()">
+      <ng-container *ngIf="!isEditing; else saveButton">
+        Edit
+      </ng-container>
+      <ng-template #saveButton>
+        Save
+      </ng-template>
+    </button>
+    <span class="button-space"></span>
+    <button *ngIf="isEditing" class="cancel-button" (click)="toggleEditMode()">Cancel</button>
+  </div>
+</div>

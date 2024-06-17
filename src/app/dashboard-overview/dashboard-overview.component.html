@@ -1,0 +1,34 @@
+<div class="dashboard-overview">
+  <div class="active-projects">
+    <h2>Active Projects</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Project Name</th>
+          <th>Completion Percentage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of activeProjects">
+          <td>{{ project.name }}</td>
+          <td>{{ project.completionPercentage }}%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="tasks-summary">
+  <h2>Tasks Summary</h2>
+  <div class="summary-card">
+    <div class="summary-item">
+      <p><strong>Pending:</strong></p>
+      <p>{{ pendingTasksCount }}</p>
+    </div>
+
+    <div class="summary-item">
+      <p><strong>Completed: </strong></p>
+      <p>{{ completedTasksCount }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="container">
+    <h2>Task Management</h2>
+    <form *ngIf="editingIndex === -1" (ngSubmit)="addTask()">
+      <div class="form-row">
+          <div class="form-group">
+              <label for="taskName">Task Name: <span class="required">*</span></label>
+              <input type="text" id="taskName" name="taskName" required [(ngModel)]="newTask.name" (focus)="setInputFocus(true)" (blur)="setInputFocus(false)">
+          </div>
+          <div class="form-group">
+              <label for="priority">Priority: <span class="required">*</span></label>
+              <select id="priority" name="priority" [(ngModel)]="newTask.priority" required (focus)="setInputFocus(true)" (blur)="setInputFocus(false)">
+                  <option value="" disabled selected>Select Priority</option>
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="dueDate">Due Date: <span class="required">*</span></label>
+              <input type="date" id="dueDate" name="dueDate" required [(ngModel)]="newTask.dueDate" (focus)="setInputFocus(true)" (blur)="setInputFocus(false)">
+          </div>
+          <div class="form-group">
+              <label for="project">Project: <span class="required">*</span></label>
+              <select id="project" name="project" [(ngModel)]="newTask.project" required (focus)="setInputFocus(true)" (blur)="setInputFocus(false)">
+                <option value="" disabled selected>Select Project</option>
+                <option *ngFor="let project of projects" [value]="project">{{ project }}</option>
+              </select>
+          </div>
+          <div class="button-container">
+              <button type="submit" class="small-button" [disabled]="isAnyInputFocused">Add Task</button>
+          </div>
+      </div>
+    </form>
+  
+    <table>
+        <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Priority</th>
+                <th>Due Date</th>
+                <th>Project</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of tasks; let i = index">
+                <ng-container *ngIf="editingIndex !== i; else editRow">
+                    <td>{{ task.name }}</td>
+                    <td [ngClass]="'priority-' + task.priority.toLowerCase()">{{ task.priority }}</td>
+                    <td>{{ task.dueDate }}</td>
+                    <td>{{ task.project }}</td>
+                    <td>
+                        <button (click)="editTask(i)">Edit</button>
+                        <button (click)="deleteTask(i)">Delete</button>
+                    </td>
+                </ng-container>
+                <ng-template #editRow>
+                    <td><input type="text" [(ngModel)]="tasks[i].name" required></td>
+                    <td>
+                        <select [(ngModel)]="tasks[i].priority" required>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </td>
+                    <td><input type="date" [(ngModel)]="tasks[i].dueDate" required></td>
+                    <td>
+                        <select [(ngModel)]="tasks[i].project" required>
+                          <option *ngFor="let project of projects" [value]="project">{{ project }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button (click)="saveTask(i)">Save</button>
+                        <button (click)="editingIndex = -1">Cancel</button>
+                    </td>
+                </ng-template>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+  

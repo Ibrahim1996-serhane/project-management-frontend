@@ -1,0 +1,32 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-header {
+  display: flex;
+}
+
+.timeline-item {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.timeline-body {
+  position: relative;
+}
+
+.task {
+  position: absolute;
+  top: 0;
+  height: 50px;
+  width: 100px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+}
+
+.task-content {
+  padding: 5px;
+}

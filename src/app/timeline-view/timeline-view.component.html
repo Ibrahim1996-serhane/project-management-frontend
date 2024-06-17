@@ -1,0 +1,18 @@
+
+<br/><br/><br/>
+<div class="timeline">
+  <div class="timeline-header">
+    <div class="timeline-item" *ngFor="let date of timelineDates">
+      {{ date | date:'mediumDate' }}
+    </div>
+  </div>
+  <hr/><hr/>
+  <div class="timeline-body" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+    <div class="task" *ngFor="let task of tasks" [style.left.%]="calculateTaskPosition(task.startDate)"
+      draggable="true" (dragstart)="onDragStart($event, task)">
+      <div class="task-content">
+        {{ task.name }}
+      </div>
+    </div>
+  </div>
+</div>

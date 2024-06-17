@@ -1,0 +1,30 @@
+/* nav-bar.component.css */
+
+nav {
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Text color */
+    padding: 10px;
+  }
+  
+  ul {
+    list-style-type: none; /* Remove bullet points */
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    display: inline; /* Display list items horizontally */
+    margin-right: 20px; /* Add some space between list items */
+  }
+  
+  a {
+    color: #fff; /* Link text color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s; /* Smooth color transition */
+  }
+  
+  a:hover {
+    color: #ffcc00; /* Change color on hover */
+  }
+  
+  
